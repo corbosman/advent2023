@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aaaeb32952e5e2167661b45fa460f32c",
+    "content-hash": "c7b0f8c1aa1d0c88880078c308730e71",
     "packages": [
         {
             "name": "cash/lrucache",
@@ -1102,7 +1102,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.3",
+        "php": "^8.2",
         "ext-ctype": "*",
         "ext-ds": "*",
         "ext-gmp": "*"

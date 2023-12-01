@@ -2,7 +2,7 @@
     "name": "corbosman/advent2021",
     "type": "project",
     "require": {
-        "php": "^8.3",
+        "php": "^8.2",
         "ext-ctype": "*",
         "ext-ds": "*",
         "ext-gmp": "*",
