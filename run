@@ -1,0 +1,19 @@
+#!/usr/bin/env php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+ini_set('memory_limit','12000M');
+const INFINITE = 999999999999999;
+
+$options = getopt("e:");
+
+/* load all available solvers */
+$solutions = collect(scandir('.'))
+             ->filter(fn($i) => str_starts_with($i, 'day'))
+             ->map(fn($solver) => "\\{$solver}\\{$solver}")
+             ->filter(fn($solver) => !is_numeric(end($argv)) || str_contains($solver, str_pad(end($argv), 2, '0', STR_PAD_LEFT)))
+             ->map(fn($solver) => new $solver($options))
+             ->reduce(fn($solutions, $solver) => $solutions->merge($solver->solve()), collect());
+
+if ($solutions->count() > 0) {
+    render_output($solutions);
+}
