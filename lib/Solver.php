@@ -16,9 +16,10 @@ class Solver
         $this->input = $this->get_input($puzzle);
     }
 
-    public function start_timer() : void
+    public function start_timer() : Solver
     {
         $this->timer = microtime(true);
+        return $this;
     }
 
     /* add a solution */

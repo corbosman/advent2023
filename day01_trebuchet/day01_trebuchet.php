@@ -8,8 +8,6 @@ class day01_trebuchet extends solver
 
     public function solve() : array
     {
-        $this->start_timer();
-
         $sum = $this->input->map(fn($l) => preg_replace("~\D~", '', $l))->map(fn($c) => (int)$c[0] . $c[-1])->sum();
         $this->solution('1a', $sum);
 
