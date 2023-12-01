@@ -20,8 +20,8 @@ class day01_trebuchet extends solver
             preg_match('/^.*(one|two|three|four|five|six|seven|eight|nine|\d).*$/', $line, $matches);
             $last = is_numeric($matches[1]) ? $matches[1] : $digits[$matches[1]];
 
-            return $first.$last;
-        })->map(fn($i) => (int)$i)->sum();
+            return (int)"{$first}{$last}";
+        })->sum();
 
         $this->solution('1b', $sum);
 
