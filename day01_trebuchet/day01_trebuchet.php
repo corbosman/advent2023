@@ -10,7 +10,7 @@ class day01_trebuchet extends solver
 
         $digits = ['one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'five' => 5, 'six' => 6, 'seven' => '7', 'eight' => 8, 'nine' => 9];
 
-        $sum = $this->input->map(fn($l) => collect(str_split($l))->filter(fn($c) => is_numeric($c))->implode(''))->map(fn($c) => (int)$c[0] . $c[-1])->sum();
+        $sum = $this->input->map(fn($l) => preg_replace("~\D~", '', $l))->map(fn($c) => (int)$c[0] . $c[-1])->sum();
         $this->solution('1a', $sum);
 
         $sum = $this->input->map(function($line) use ($digits) {
