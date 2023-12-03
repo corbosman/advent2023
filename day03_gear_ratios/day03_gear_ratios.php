@@ -23,10 +23,10 @@ class day03_gear_ratios extends solver
         for($y=0; $y < $rows; $y++) {
             for($x=0; $x < $cols; $x++) {
                 if (!is_numeric($input[$y][$x])) continue;
-                [$number, $is_part_number, $len, $gears] = $this->read_number($x, $y, $rows, $cols, $input);
+                [$number, $len, $gears] = $this->read_number($x, $y, $rows, $cols, $input);
                 $x += $len;
 
-                if ($is_part_number) $part_numbers->push($number);
+                $part_numbers->push($number);
 
                 /* this number is part of one or more gears, add it to the gears for part2 */
                 foreach($gears as $gear) {
@@ -49,7 +49,7 @@ class day03_gear_ratios extends solver
             [$is_part_number, $gears] = $this->check_for_part($i, $y, $rows, $cols, $input, $is_part_number, $gears);
         }
 
-        return [(int)$number->implode(''), $is_part_number, count($number)-1, $gears->unique()];
+        return [$is_part_number ? (int)$number->implode('') : null, count($number)-1, $gears->unique()];
     }
 
     public function check_for_part(int $x, int $y, $rows, $cols, Collection $input, bool $is_part_number, Collection $gears) : array
