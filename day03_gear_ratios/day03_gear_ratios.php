@@ -23,12 +23,12 @@ class day03_gear_ratios extends solver
         for($y=0; $y < $rows; $y++) {
             for($x=0; $x < $cols; $x++) {
                 if (!is_numeric($input[$y][$x])) continue;
-                [$number, $is_part, $len, $gears] = $this->read_number($x, $y, $rows, $cols, $input);
+                [$number, $is_part_number, $len, $gears] = $this->read_number($x, $y, $rows, $cols, $input);
                 $x += $len;
 
-                if ($is_part) $part_numbers->push($number);
+                if ($is_part_number) $part_numbers->push($number);
 
-                /* this number is part of a gear, add it to the gears for part2 */
+                /* this number is part of one or more gears, add it to the gears for part2 */
                 foreach($gears as $gear) {
                     $this->gears["{$gear[0]},{$gear[1]}"][] = $number;
                 }
@@ -46,33 +46,24 @@ class day03_gear_ratios extends solver
         for($i=$x; $i<$cols; $i++) {
             if (!is_numeric($input[$y][$i])) break;
             $number->push($input[$y][$i]);
-            if ($is_part_number === false && $this->is_part_number($i, $y, $rows, $cols, $input)) $is_part_number = true;
-            $gears = $gears->merge($this->find_gears($i, $y, $rows, $cols, $input));
+            [$is_part_number, $gears] = $this->check_for_part($i, $y, $rows, $cols, $input, $is_part_number, $gears);
         }
 
         return [(int)$number->implode(''), $is_part_number, count($number)-1, $gears->unique()];
     }
 
-    public function is_part_number(int $x, int $y, $rows, $cols, Collection $input) : bool
+    public function check_for_part(int $x, int $y, $rows, $cols, Collection $input, bool $is_part_number, Collection $gears) : array
     {
-        foreach([[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]] as [$dy, $dx]) {
-            if ($y+$dy<0 || $x+$dx < 0 || $y+$dy>=$rows || $x+$dx >= $cols) continue;
-            $c = $input[$y+$dy][$x+$dx];
-            if (!is_numeric($c) && $c !== '.') return true;
-        }
-        return false;
-    }
-
-    public function find_gears(int $x, int $y, $rows, $cols, Collection $input) : Collection
-    {
-        $gears = collect();
+        $g = collect();
 
         foreach([[-1,-1],[-1,0],[-1,1],[0,-1],[0,1],[1,-1],[1,0],[1,1]] as [$dy, $dx]) {
             if ($y+$dy<0 || $x+$dx < 0 || $y+$dy>=$rows || $x+$dx >= $cols) continue;
             $c = $input[$y+$dy][$x+$dx];
-            if ($c === '*') $gears->push([$y+$dy,$x+$dx]);
+            if (!is_numeric($c) && $c !== '.') $is_part_number |= true;
+            if ($c === '*') $g->push([$y+$dy,$x+$dx]);
         }
-        return $gears;
+
+        return [$is_part_number, $gears->merge($g)];
     }
 
     public function parse_input(Collection $input) : Collection
