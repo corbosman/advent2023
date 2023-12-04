@@ -35,10 +35,6 @@ class day04_scratchcards extends solver
     {
         return $this->input
             ->map(fn($i) => explode('|', trim(substr($i, 8))))
-            ->map(function($a) {
-               $winning = collect(preg_split('/\s+/', trim($a[0])));
-               $numbers = collect(preg_split('/\s+/', trim($a[1])));
-               return new Scratchcard($winning, $numbers);
-            });
+            ->map(fn($a) => new Scratchcard(collect(preg_split('/\s+/', trim($a[0]))), collect(preg_split('/\s+/', trim($a[1])))));
     }
  }
