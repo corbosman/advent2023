@@ -4,8 +4,8 @@ use Tightenco\Collect\Support\Collection;
 
 class XXX extends solver
 {
-    public function solve() : array
+    public function solve() : void
     {
-        return $this->solutions;
+        //
     }
  }

@@ -8,11 +8,10 @@ class day02_cube_conundrum extends solver
     public const MAX_GREEN = 13;
     public const MAX_BLUE = 14;
 
-    public function solve() : array
+    public function solve() : void
     {
         $this->solution('2a', $this->part1($this->input));
         $this->solution('2b', $this->part2($this->input));
-        return $this->solutions;
     }
 
     public function part1(Collection $input) : int

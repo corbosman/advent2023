@@ -4,12 +4,11 @@ use Tightenco\Collect\Support\Collection;
 
 class day04_scratchcards extends solver
 {
-    public function solve() : array
+    public function solve() : void
     {
         $scratchcards = $this->parse_input();
         $this->solution('4a', $this->part1($scratchcards));
         $this->solution('4b', $this->part2($scratchcards));
-        return $this->solutions;
     }
 
     public function part1(Collection $scratchcards) : int

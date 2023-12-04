@@ -1,12 +1,13 @@
 <?php namespace day01_trebuchet;
 use Lib\solver;
+use Lib\SolverContract;
 use Tightenco\Collect\Support\Collection;
 
 class day01_trebuchet extends solver
 {
     private array $digits = ['one' => 1, 'two' => 2, 'three' => 3, 'four' => 4, 'five' => 5, 'six' => 6, 'seven' => '7', 'eight' => 8, 'nine' => 9];
 
-    public function solve() : array
+    public function solve() : void
     {
         $sum = $this->input->map(fn($l) => preg_replace("~\D~", '', $l))->map(fn($c) => (int)$c[0] . $c[-1])->sum();
         $this->solution('1a', $sum);
@@ -22,7 +23,5 @@ class day01_trebuchet extends solver
         })->sum();
 
         $this->solution('1b', $sum);
-
-        return $this->solutions;
     }
  }

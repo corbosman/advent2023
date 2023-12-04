@@ -2,7 +2,7 @@
 use ReflectionClass;
 use Tightenco\Collect\Support\Collection;
 
-class Solver
+abstract class Solver implements SolverContract
 {
     protected float $timer;
     protected array $solutions = [];
@@ -16,9 +16,15 @@ class Solver
         $this->input = $this->get_input($puzzle);
     }
 
-    public function start_timer() : Solver
+    public function start_timer() : self
     {
         $this->timer = microtime(true);
+        return $this;
+    }
+
+    public function solver() : self
+    {
+        $this->solve();
         return $this;
     }
 
@@ -28,6 +34,11 @@ class Solver
         $time = microtime(true);
         $this->solutions[] = [$puzzle, $this->title(), $value, $time - $this->timer];
         $this->timer = $time;
+    }
+
+    public function solutions() : array
+    {
+        return $this->solutions;
     }
 
     /* get the puzzle number from the class name */

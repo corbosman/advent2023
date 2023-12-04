@@ -6,12 +6,11 @@ class day03_gear_ratios extends solver
 {
     public array $gears;
 
-    public function solve() : array
+    public function solve() : void
     {
         $input = $this->parse_input($this->input);
         $this->solution('3a', $this->find_part_numbers($input)->sum());
         $this->solution('3b', collect($this->gears)->filter(fn($g) => count($g) === 2)->map(fn($x)=>$x[0] * $x[1])->sum());
-        return $this->solutions;
     }
 
     public function find_part_numbers(Collection $input) : Collection
