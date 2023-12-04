@@ -23,8 +23,8 @@ class day04_scratchcards extends solver
 
         foreach($scratchcards as $current_card => $card) {
             $winners = $card->winners()->count();
-            $max = min($current_card+$winners+1, $total_cards);
-            for($j=$current_card+1; $j<$max; $j++) {
+            $min = min($current_card+$winners+1, $total_cards);
+            for($j=$current_card+1; $j<$min; $j++) {
                 $scratchcards[$j]->add($card->count);
             }
         }
