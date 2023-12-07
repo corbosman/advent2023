@@ -4,24 +4,24 @@ namespace day07_camel_cards;
 
 class Hand
 {
-    public array $cards;
-    public int $bid;
     public Type $type;
     public array $scores;
     public int $order;
 
-    public function __construct(public bool $jokers = false) {}
+    public function __construct(
+        public array $cards,
+        public int $bid,
+        public bool $jokers = false
+    ) {}
 
-    public function create(array $cards, int $bid) : self
+    public function score() : self
     {
-        $this->cards = $cards;
-        $this->bid = $bid;
         $this->scores = $this->jokers
             ? ['T' => 'A', 'Q' => 'B', 'K' => 'C', 'A' => 'D', 'J' => 1]
             : ['T' => 'A', 'J' => 'B', 'Q' => 'C', 'K' => 'D', 'A' => 'E'];
 
-        $this->type  = $this->check_hand($cards);
-        $this->order = $this->order_score($cards);
+        $this->type  = $this->check_hand($this->cards);
+        $this->order = $this->order_score($this->cards);
 
         return $this;
     }

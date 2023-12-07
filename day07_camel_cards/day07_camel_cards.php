@@ -23,8 +23,8 @@ class day07_camel_cards extends solver
     {
         $hands = $this->input->map(fn($h) => preg_split('/\s+/', $h))->map(fn($h) => [str_split($h[0], 1), (int)$h[1]]);
         return [
-            $hands->map(fn($h) => (new Hand)->create($h[0], $h[1])),
-            $hands->map(fn($h) => (new Hand(true))->create($h[0], $h[1])),
+            $hands->map(fn($h) => (new Hand($h[0], $h[1]))->score()),
+            $hands->map(fn($h) => (new Hand($h[0], $h[1], true))->score()),
         ];
     }
  }
