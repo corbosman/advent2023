@@ -66,14 +66,14 @@ class Hand
             2 => match($type) {
                 TYPE::THREE_OF_A_KIND => TYPE::FIVE_OF_A_KIND,
                 TYPE::ONE_PAIR => TYPE::FOUR_OF_A_KIND,
-                TYPE::HIGH_CARD => TYPE::THREE_OF_A_KIND
+                default => TYPE::THREE_OF_A_KIND
             },
             1 => match($type) {
                 TYPE::FOUR_OF_A_KIND => TYPE::FIVE_OF_A_KIND,
                 TYPE::THREE_OF_A_KIND => TYPE::FOUR_OF_A_KIND,
                 TYPE::TWO_PAIRS => TYPE::FULL_HOUSE,
                 TYPE::ONE_PAIR => TYPE::THREE_OF_A_KIND,
-                TYPE::HIGH_CARD => TYPE::ONE_PAIR
+                default => TYPE::ONE_PAIR
             },
             0 => $type
         };
