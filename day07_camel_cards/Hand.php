@@ -16,11 +16,15 @@ class Hand
 
     public function score() : self
     {
+        /* card score in hex */
         $this->scores = $this->jokers
             ? ['T' => 'A', 'Q' => 'B', 'K' => 'C', 'A' => 'D', 'J' => 1]
             : ['T' => 'A', 'J' => 'B', 'Q' => 'C', 'K' => 'D', 'A' => 'E'];
 
+        /* type of hand */
         $this->type  = $this->check_hand($this->cards);
+
+        /* hand score when type is equal */
         $this->order = $this->order_score($this->cards);
 
         return $this;
