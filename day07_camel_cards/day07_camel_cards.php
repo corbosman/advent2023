@@ -7,24 +7,16 @@ class day07_camel_cards extends solver
     public function solve() : void
     {
         [$hands1, $hands2] = $this->parse_input();
-        $this->solution('7a', $this->part1($hands1));
-        $this->solution('7b', $this->part2($hands2));
+        $this->solution('7a', $this->part12($hands1));
+        $this->solution('7b', $this->part12($hands2));
     }
 
-    public function part1(Collection $hands) : int
+    public function part12(Collection $hands) : int
     {
         return $hands->sortBy([fn (Hand $hand1, Hand $hand2) => $hand1->compare($hand2)])
                      ->values()
                      ->map(fn($h, $i) => ($i+1) * $h->bid)
                      ->sum();
-    }
-
-    public function part2(Collection $hands) : int
-    {
-        return $hands->sortBy([fn (Hand $hand1, Hand $hand2) => $hand1->compare($hand2)])
-            ->values()
-            ->map(fn($h, $i) => ($i+1) * $h->bid)
-            ->sum();
     }
 
     public function parse_input() : array
