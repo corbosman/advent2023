@@ -51,7 +51,7 @@ class day10_pipe_maze extends solver
     public function walk_maze(array $maze, int $x, int $y, int $from_x, int $from_y, int $to_x, int $to_y) : int
     {
         /* find the next step in the maze */
-        [$nx, $ny, $pipe] = $this->find_next($maze, $x, $y, $from_x, $from_y);
+        [$nx, $ny] = $this->find_next($maze, $x, $y, $from_x, $from_y);
 
         /* we reached the destination */
         if ($x === $to_x && $y === $to_y) return 1;
@@ -68,17 +68,17 @@ class day10_pipe_maze extends solver
         $pipe = $maze[$y][$x];
         switch($pipe) {
             case '|':
-                return $from_y === $y-1 ? [$x, $y+1, $pipe] : [$x, $y-1, $pipe];
+                return $from_y === $y-1 ? [$x, $y+1] : [$x, $y-1];
             case '-':
-                return $from_x === $x-1 ? [$x+1, $y, $pipe] : [$x-1, $y, $pipe];
+                return $from_x === $x-1 ? [$x+1, $y] : [$x-1, $y];
             case 'L':
-                return $from_y === $y ? [$x, $y-1, $pipe] : [$x+1, $y, $pipe];
+                return $from_y === $y ? [$x, $y-1] : [$x+1, $y];
             case 'F':
-                return $from_y === $y+1 ? [$x+1, $y, $pipe] : [$x, $y+1, $pipe];
+                return $from_y === $y+1 ? [$x+1, $y] : [$x, $y+1];
             case '7':
-                return $from_y === $y+1 ? [$x-1, $y, $pipe] : [$x, $y+1, $pipe];
+                return $from_y === $y+1 ? [$x-1, $y] : [$x, $y+1];
             case 'J':
-                return $from_y === $y-1 ? [$x-1, $y, $pipe] : [$x, $y-1, $pipe];
+                return $from_y === $y-1 ? [$x-1, $y] : [$x, $y-1];
         }
     }
 
