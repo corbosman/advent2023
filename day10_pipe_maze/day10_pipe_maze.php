@@ -63,20 +63,6 @@ class day10_pipe_maze extends solver
         return 1 + $this->walk_maze($maze, $nx, $ny, $x, $y, $to_x, $to_y);
     }
 
-    public function raycast(array $maze, int $x, int $y) : int
-    {
-        $intersects = 0;
-
-        /* raycase from point to the left */
-        for($i=$x-1; $i>=0; $i--) {
-            $c = $maze[$y][$i];
-
-            /* we are crossing the path */
-            if (isset($this->path[$y][$i]) && in_array($c, ['|', 'J', 'L'])) $intersects++;
-        }
-        return $intersects;
-    }
-
     public function find_next(array $maze, int $x, int $y, int $from_x, int $from_y) : array
     {
         $pipe = $maze[$y][$x];
@@ -94,6 +80,20 @@ class day10_pipe_maze extends solver
             case 'J':
                 return $from_y === $y-1 ? [$x-1, $y, $pipe] : [$x, $y-1, $pipe];
         }
+    }
+
+    public function raycast(array $maze, int $x, int $y) : int
+    {
+        $intersects = 0;
+
+        /* raycase from point to the left */
+        for($i=$x-1; $i>=0; $i--) {
+            $c = $maze[$y][$i];
+
+            /* we are crossing the path */
+            if (isset($this->path[$y][$i]) && in_array($c, ['|', 'J', 'L'])) $intersects++;
+        }
+        return $intersects;
     }
 
     public function find_start(array $maze) : array
