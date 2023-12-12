@@ -2,7 +2,4 @@
 use Lib\Point2D;
 use Tightenco\Collect\Support\Collection;
 
-class Galaxy extends Point2D {
-    public int $xe;
-    public int $ye;
-}
+class Galaxy extends Point2D {}
