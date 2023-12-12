@@ -1,4 +1,5 @@
 <?php namespace day11_cosmic_expansion;
+use drupol\phpermutations\Iterators\Combinations;
 use Tightenco\Collect\Support\Collection;
 
 class Space
@@ -15,34 +16,21 @@ class Space
     public function distances(int $expansion_factor) : int
     {
         $sum = 0;
-        $galaxies = clone $this->galaxies;
+        $galaxies = collect();
         [$empty_rows, $empty_cols] = $this->find_empty_space();
 
+        foreach($this->galaxies as $g) {
+            $g = clone($g);
+            $ex = $empty_cols->filter(fn($r) => $r < $g->x)->count();
+            $ey = $empty_rows->filter(fn($r) => $r < $g->y)->count();
+            $g->x += ($expansion_factor * $ex);
+            $g->y += ($expansion_factor * $ey);
+            $galaxies->push($g);
+        }
         while($galaxies->count() > 0) {
             $g1 = $galaxies->shift();
-
             foreach($galaxies as $g2) {
-                $distance = $g1->distance($g2);
-                $expand = 0;
-
-                $from_x = min($g1->x, $g2->x);
-                $to_x   = max($g1->x, $g2->x);
-
-                /* expand X */
-                foreach($empty_cols as $col) {
-                    if ($col > $from_x && $col < $to_x) $expand++;
-                }
-
-                $from_y = min($g1->y, $g2->y);
-                $to_y   = max($g1->y, $g2->y);
-
-                /* expand Y */
-                foreach($empty_rows as $row) {
-                    if ($row > $from_y && $row < $to_y) $expand++;
-                }
-
-                // $expanded_distance = $distance + $empty;
-                $sum += $distance - ($expand) + ($expansion_factor * $expand);
+                $sum += $g1->manhattan($g2);
             }
         }
         return $sum;

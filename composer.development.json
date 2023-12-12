@@ -1,0 +1,65 @@
+{
+    "name": "corbosman\/advent2021",
+    "type": "project",
+    "require": {
+        "php": "^8.2",
+        "ext-ctype": "*",
+        "ext-ds": "*",
+        "ext-gmp": "*",
+        "cash\/lrucache": "^1.0",
+        "drupol\/phpermutations": "*",
+        "nunomaduro\/termwind": "^1.2",
+        "php-ds\/php-ds": "^1.4",
+        "teewurst\/psr4-advanced-wildcard-composer-plugin": "^3.0",
+        "tightenco\/collect": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lib\\": "lib",
+            "day01_trebuchet\\": "day01_trebuchet",
+            "day02_cube_conundrum\\": "day02_cube_conundrum",
+            "day03_gear_ratios\\": "day03_gear_ratios",
+            "day04_scratchcards\\": "day04_scratchcards",
+            "day05_if_you_give_a_seed_a_fertilizer\\": "day05_if_you_give_a_seed_a_fertilizer",
+            "day06_wait_for_it\\": "day06_wait_for_it",
+            "day07_camel_cards\\": "day07_camel_cards",
+            "day08_haunted_wasteland\\": "day08_haunted_wasteland",
+            "day09_mirage_maintenance\\": "day09_mirage_maintenance",
+            "day10_pipe_maze\\": "day10_pipe_maze",
+            "day11_cosmic_expansion\\": "day11_cosmic_expansion"
+        },
+        "files": [
+            "lib\/helpers.php"
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "teewurst\/psr4-advanced-wildcard-composer-plugin": true
+        }
+    },
+    "extra": {
+        "teewurst\/psr4-advanced-wildcard-composer-plugin": {
+            "autoload": {
+                "psr-4": {
+                    "%s\\": "{day*}"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "My\\Namespace\\test\\%s\\": "tests\/{*}\/src"
+                }
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "bin": [
+        "advent"
+    ],
+    "autoload-dev": {
+        "psr-4": []
+    }
+}

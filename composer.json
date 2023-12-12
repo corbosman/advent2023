@@ -7,6 +7,7 @@
         "ext-ds": "*",
         "ext-gmp": "*",
         "cash/lrucache": "^1.0",
+        "drupol/phpermutations": "^1.4",
         "nunomaduro/termwind": "^1.2",
         "php-ds/php-ds": "^1.4",
         "teewurst/psr4-advanced-wildcard-composer-plugin": "^3.0",

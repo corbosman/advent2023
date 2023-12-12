@@ -7,8 +7,8 @@ class day11_cosmic_expansion extends solver
     public function solve() : void
     {
         $space = $this->parse_input();
-        $this->solution('11a', $space->distances(2));
-        $this->solution('11b', $space->distances(1000000));
+        $this->solution('11a', $space->distances(1));
+        $this->solution('11b', $space->distances(999999));
     }
 
     public function parse_input() : Space
