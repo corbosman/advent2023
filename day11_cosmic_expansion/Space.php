@@ -21,8 +21,7 @@ class Space
 
         foreach($this->galaxies as $g) {
             $g = clone($g);
-            $g->x += ($expansion_factor * $empty_cols->filter(fn($r) => $r < $g->x)->count());
-            $g->y += ($expansion_factor * $empty_rows->filter(fn($r) => $r < $g->y)->count());
+            $g->expand($expansion_factor, $empty_cols->filter(fn($r) => $r < $g->x)->count(), $empty_rows->filter(fn($r) => $r < $g->y)->count());
             $galaxies->push($g);
         }
         while($galaxies->count() > 0) {

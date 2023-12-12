@@ -2,4 +2,10 @@
 use Lib\Point2D;
 use Tightenco\Collect\Support\Collection;
 
-class Galaxy extends Point2D {}
+class Galaxy extends Point2D {
+    public function expand(int $factor, int $ex, int $ey) : void
+    {
+        $this->x += $factor*$ex;
+        $this->y += $factor*$ey;
+    }
+}
