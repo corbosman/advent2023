@@ -62,7 +62,7 @@ abstract class Solver implements SolverContract
         die("no input for puzzle {$puzzle}");
     }
 
-    public function read_input($filename) : mixed
+    public function read_input($filename) : Collection
     {
         return collect(file($filename, FILE_IGNORE_NEW_LINES));
     }
