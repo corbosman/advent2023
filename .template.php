@@ -1,6 +1,6 @@
 <?php namespace XXX;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class XXX extends solver
 {

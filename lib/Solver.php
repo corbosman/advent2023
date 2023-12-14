@@ -1,6 +1,6 @@
 <?php namespace Lib;
+use Illuminate\Support\Collection;
 use ReflectionClass;
-use Tightenco\Collect\Support\Collection;
 
 abstract class Solver implements SolverContract
 {

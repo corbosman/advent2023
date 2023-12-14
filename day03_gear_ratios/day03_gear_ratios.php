@@ -1,6 +1,6 @@
 <?php namespace day03_gear_ratios;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class day03_gear_ratios extends solver
 {

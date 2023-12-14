@@ -1,6 +1,5 @@
 <?php namespace day11_cosmic_expansion;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
 
 class day11_cosmic_expansion extends solver
 {

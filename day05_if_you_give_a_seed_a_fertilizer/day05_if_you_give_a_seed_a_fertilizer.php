@@ -1,6 +1,6 @@
 <?php namespace day05_if_you_give_a_seed_a_fertilizer;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class day05_if_you_give_a_seed_a_fertilizer extends solver
 {

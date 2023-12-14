@@ -1,6 +1,6 @@
 <?php namespace day02_cube_conundrum;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class day02_cube_conundrum extends solver
 {

@@ -1,6 +1,6 @@
 <?php namespace day08_haunted_wasteland;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class day08_haunted_wasteland extends solver
 {

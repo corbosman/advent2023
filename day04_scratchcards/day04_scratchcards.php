@@ -1,6 +1,6 @@
 <?php namespace day04_scratchcards;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class day04_scratchcards extends solver
 {

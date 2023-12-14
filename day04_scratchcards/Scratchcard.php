@@ -1,8 +1,6 @@
-<?php
+<?php namespace day04_scratchcards;
 
-namespace day04_scratchcards;
-
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class Scratchcard
 {

@@ -75,3 +75,7 @@ function print_grid(array $grid, $w)
     echo "\n";
 }
 
+function transpose($array) : array
+{
+    return array_map(null, ...array_map('array_column', $array, []));
+}

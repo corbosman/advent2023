@@ -1,6 +1,5 @@
 <?php namespace day11_cosmic_expansion;
-use drupol\phpermutations\Iterators\Combinations;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class Space
 {

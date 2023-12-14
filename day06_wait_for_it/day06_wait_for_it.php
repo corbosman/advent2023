@@ -1,6 +1,6 @@
 <?php namespace day06_wait_for_it;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class day06_wait_for_it extends solver
 {

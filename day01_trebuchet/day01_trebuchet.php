@@ -1,7 +1,5 @@
 <?php namespace day01_trebuchet;
 use Lib\solver;
-use Lib\SolverContract;
-use Tightenco\Collect\Support\Collection;
 
 class day01_trebuchet extends solver
 {

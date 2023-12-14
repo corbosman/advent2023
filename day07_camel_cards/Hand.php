@@ -1,6 +1,4 @@
-<?php
-
-namespace day07_camel_cards;
+<?php namespace day07_camel_cards;
 
 class Hand
 {

@@ -1,7 +1,6 @@
 <?php namespace day09_mirage_maintenance;
-use JetBrains\PhpStorm\ArrayShape;
 use Lib\solver;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class day09_mirage_maintenance extends solver
 {
