@@ -7,18 +7,8 @@ class day13_point_of_incidence extends solver
     public function solve() : void
     {
         $patterns = $this->parse_input();
-        $this->solution('13a', $this->part1($patterns));
-        $this->solution('13b', $this->part2($patterns));
-    }
-
-    public function part1(Collection $patterns) : int
-    {
-        return $this->check_reflections($patterns);
-    }
-
-    public function part2(Collection $patterns) : int
-    {
-        return $this->check_reflections($patterns, true);
+        $this->solution('13a', $this->check_reflections($patterns));
+        $this->solution('13b', $this->check_reflections($patterns, true));
     }
 
     public function check_reflections(Collection $patterns, bool $smudge = false) : int
