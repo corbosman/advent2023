@@ -11,12 +11,12 @@ class day13_point_of_incidence extends solver
         $this->solution('13b', $this->check_reflections($patterns, true));
     }
 
-    public function check_reflections(Collection $patterns, bool $smudge = false) : int
+    public function check_reflections(Collection $patterns, bool $allow_smudge = false) : int
     {
-        return $patterns->map(fn($pattern) => $this->check_reflection($pattern[0], 100, $smudge) ?? $this->check_reflection($pattern[1], 1, $smudge))->sum();
+        return $patterns->map(fn($pattern) => $this->check_reflection($pattern[0], 100, $allow_smudge) ?? $this->check_reflection($pattern[1], 1, $allow_smudge))->sum();
     }
 
-    public function check_reflection(Collection $pattern, int $factor, bool $smudge) : int|null
+    public function check_reflection(Collection $pattern, int $factor, bool $allow_smudge) : int|null
     {
 
         $length = count($pattern);
@@ -25,33 +25,33 @@ class day13_point_of_incidence extends solver
 
             /* the two are the same, ripple outwards */
             if($pattern[$i] === $pattern[$i+1]) {
-                if ($this->ripple_outwards($pattern, $i, $i+1, $length, 0, $smudge)) $r =  (($i+1) * $factor);
-            } elseif($smudge && $this->differ_by_one($pattern[$i], $pattern[$i+1])) {
-                if ($this->ripple_outwards($pattern, $i, $i+1, $length, 1, $smudge)) $r =  (($i+1) * $factor);
+                if ($this->ripple_outwards($pattern, $i, $i+1, $length, 0, $allow_smudge)) $r =  (($i+1) * $factor);
+            } elseif($allow_smudge && $this->differ_by_one($pattern[$i], $pattern[$i+1])) {
+                if ($this->ripple_outwards($pattern, $i, $i+1, $length, 1, $allow_smudge)) $r =  (($i+1) * $factor);
             }
         }
         return $r;
     }
 
-    public function ripple_outwards(Collection $p, int $i1, int $i2, $length, int $diff, bool $smudge) : int
+    public function ripple_outwards(Collection $p, int $i1, int $i2, $length, int $smudge, bool $allow_smudge) : int
     {
         $j = 1;
-        while($i1-$j>=0 && $i2+$j<$length && $diff < 2) {
+        while($i1-$j>=0 && $i2+$j<$length && $smudge < 2) {
             /* they are a reflection, continue looking */
             if ($p[$i1-$j] === $p[$i2+$j]) {
                 $j++;
                 continue;
             }
             /* we allow a smudge, continue looking */
-            if ($smudge && $this->differ_by_one($p[$i1-$j], $p[$i2+$j])) {
-                $diff++;
+            if ($allow_smudge && $this->differ_by_one($p[$i1-$j], $p[$i2+$j])) {
+                $smudge++;
                 $j++;
                 continue;
             }
             /* they are not a reflection */
             return false;
         }
-        return $smudge ? $diff === 1 : $diff === 0;
+        return $allow_smudge ? $smudge === 1 : $smudge === 0;
     }
 
     public function differ_by_one(int $a, int $b) : bool
