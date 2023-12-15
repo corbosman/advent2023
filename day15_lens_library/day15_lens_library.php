@@ -34,8 +34,7 @@ class day15_lens_library extends solver
                     if ($boxes[$box]->hasKey($label)) $boxes[$box]->remove($label);
                     break;
                 case '=':
-                    $box = $boxes[$box];
-                    $box[$label] = $focal_length;
+                    $boxes[$box][$label] = $focal_length;
             }
         }
         return $this->focussing_power($boxes);
@@ -44,7 +43,7 @@ class day15_lens_library extends solver
     public function focussing_power(Collection $boxes) : int
     {
         return $boxes->reduce(function($carry, $box, $box_number) {
-            [$i, $box_sum] = $box->values()->reduce(fn($carry, $focal_length) => [$carry[0]+1, $carry[1] + ($carry[0] * $focal_length)],[1,0]);
+            [$_, $box_sum] = $box->values()->reduce(fn($carry, $focal_length) => [$carry[0]+1, $carry[1] + ($carry[0] * $focal_length)],[1,0]);
             return $carry + (($box_number+1) * $box_sum);
         },0);
     }
