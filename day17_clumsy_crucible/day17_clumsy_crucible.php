@@ -50,7 +50,7 @@ class day17_clumsy_crucible extends solver
                         $q->insert([$next_heat_loss, $nx, $ny, $x, $y, $dx, $dy, $steps+1], $next_heat_loss);
                     }
                 } else {
-                    /* if we're close enough to a turn (or we're at [0,0) */
+                    /* if we're far enough to a turn (or we're at [0,0) */
                     if ($steps >= $min_blocks_after_turning || [$x,$y] === [0,0]) {
                         $q->insert([$next_heat_loss, $nx, $ny, $x, $y, $ndx, $ndy, 1], $next_heat_loss);
                     }
