@@ -12,7 +12,7 @@ class day17_clumsy_crucible extends solver
         $this->solution('17b', $this->route($city, 0, 0, 10, 4));
     }
 
-    /* this is sort of a dijkstra but the direction and steps is part of the decision if we've seen a previous direction */
+    /* this is sort of a dijkstra but the direction and steps are part of the decision if we've seen a previous direction */
     public function route(Collection $city, int $sx, int $sy, $max_blocks_without_turning = 3, $min_blocks_after_turning = 0) : int
     {
         $w = count($city[0]);
