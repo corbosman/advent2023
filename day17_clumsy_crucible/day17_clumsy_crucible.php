@@ -39,7 +39,7 @@ class day17_clumsy_crucible extends solver
                 if (out_of_bounds($nx, $ny, $w, $h)) continue;
 
                 /* dont go back to where we came from */
-                if ($x+$ndx === $px && $y+$ndy === $py) continue;
+                if ($nx === $px && $ny === $py) continue;
 
                 $next_heat_loss = $heat_loss + $city[$ny][$nx];
 
