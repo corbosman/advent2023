@@ -79,3 +79,8 @@ function transpose($array) : array
 {
     return array_map(null, ...array_map('array_column', $array, []));
 }
+
+function out_of_bounds(int $x, int $y, int $w, int $h) : bool
+{
+    return $x<0 || $y < 0 || $x >= $w || $y >= $h;
+}
