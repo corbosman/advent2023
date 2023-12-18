@@ -1,0 +1,13 @@
+        $image = imagecreatetruecolor(650, 650);
+        $backgroundColor = imagecolorallocate($image, 0, 0, 0);
+        imagefill($image, 0, 0, $backgroundColor);
+        $redColor = imagecolorallocate($image, 255, 0, 0);
+        $blueColor = imagecolorallocate($image, 0, 0, 255);
+
+        foreach($lagoon as $y => $row) {
+            foreach($row as $x => $v) {
+                imagesetpixel($image, $x+70, $y+250, $redColor);
+            }
+        }
+        imagejpeg($image, "maze.jpg");
+        imagedestroy($image);
