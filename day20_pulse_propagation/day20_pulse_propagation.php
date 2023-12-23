@@ -48,11 +48,11 @@ class day20_pulse_propagation extends solver
         /* first reset all modules */
         $modules->each->reset();
 
-        /* find the module that feeds into rx */
-        $module = $modules->filter(fn($m) => $m->outputs->contains('rx'))->first();
+        /* find the rx_feeder that feeds into rx */
+        $rx_feeder = $modules->filter(fn($m) => $m->outputs->contains('rx'))->first();
 
-        /* find the modules that feed into that module */
-        $modules_to_track = $modules->filter(fn($m) => $m->outputs->contains($module->name))->mapWithKeys(fn($m) => [$m->name => 0])->toArray();
+        /* find the modules that feed into that rx_feeder */
+        $modules_to_track = $modules->filter(fn($m) => $m->outputs->contains($rx_feeder->name))->mapWithKeys(fn($m) => [$m->name => 0])->toArray();
 
         $queue = new Deque;
         $presses = 0;
@@ -69,7 +69,7 @@ class day20_pulse_propagation extends solver
 
                 /* process all the signals and fire off new signals */
                 foreach($destination_module->process($signal) as $new_signal) {
-                    if (isset($modules_to_track[$new_signal->source]) && $new_signal->destination === $module->name && $new_signal->pulse === Pulse::HIGH) {
+                    if (isset($modules_to_track[$new_signal->source]) && $new_signal->destination === $rx_feeder->name && $new_signal->pulse === Pulse::HIGH) {
 
                         /* seen it for the first time? */
                         if ($modules_to_track[$new_signal->source] === 0) {
