@@ -11,9 +11,7 @@ abstract class Module
 
     public function send(?Pulse $pulse) : Collection
     {
-        if ($pulse === null) return collect();
-
-        return $this->outputs->map(fn($output) => new Signal($this->name, $output, $pulse));
+        return $pulse === null ? collect() : $this->outputs->map(fn($output) => new Signal($this->name, $output, $pulse));
     }
 
     public function reset() : void {}
