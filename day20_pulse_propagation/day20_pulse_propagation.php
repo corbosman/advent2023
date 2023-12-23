@@ -48,7 +48,7 @@ class day20_pulse_propagation extends solver
         /* first reset all modules */
         $modules->each->reset();
 
-        /* find the rx_feeder that feeds into rx */
+        /* find the module that feeds into rx */
         $rx_feeder = $modules->filter(fn($m) => $m->outputs->contains('rx'))->first();
 
         /* find the modules that feed into that rx_feeder */
@@ -65,10 +65,8 @@ class day20_pulse_propagation extends solver
 
                 if ($signal->destination === 'rx') continue;
 
-                $destination_module = $modules[$signal->destination];
-
                 /* process all the signals and fire off new signals */
-                foreach($destination_module->process($signal) as $new_signal) {
+                foreach($modules[$signal->destination]->process($signal) as $new_signal) {
                     if (isset($modules_to_track[$new_signal->source]) && $new_signal->destination === $rx_feeder->name && $new_signal->pulse === Pulse::HIGH) {
 
                         /* seen it for the first time? */
