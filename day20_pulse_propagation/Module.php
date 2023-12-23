@@ -5,8 +5,6 @@ use Illuminate\Support\Collection;
 
 abstract class Module
 {
-    public Pulse $pulse;
-
     public function __construct(public string $name, public Collection $outputs) {
         $this->outputs = $outputs;
     }
