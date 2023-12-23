@@ -1,5 +1,6 @@
 <?php namespace day20_pulse_propagation;
 
+use day20_pulse_propagation\Enums\Pulse;
 use Illuminate\Support\Collection;
 
 abstract class Module

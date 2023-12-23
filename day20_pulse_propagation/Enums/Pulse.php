@@ -1,4 +1,4 @@
-<?php namespace day20_pulse_propagation;
+<?php namespace day20_pulse_propagation\Enums;
 
 enum Pulse : int
 {

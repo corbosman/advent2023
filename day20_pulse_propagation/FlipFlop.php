@@ -1,5 +1,7 @@
 <?php namespace day20_pulse_propagation;
 
+use day20_pulse_propagation\Enums\Mode;
+use day20_pulse_propagation\Enums\Pulse;
 use Illuminate\Support\Collection;
 
 class FlipFlop extends Module implements ModuleSpec

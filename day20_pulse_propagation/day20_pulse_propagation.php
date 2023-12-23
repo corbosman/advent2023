@@ -1,7 +1,8 @@
 <?php namespace day20_pulse_propagation;
+use day20_pulse_propagation\Enums\Pulse;
 use Ds\Deque;
-use Lib\solver;
 use Illuminate\Support\Collection;
+use Lib\solver;
 
 class day20_pulse_propagation extends solver
 {
