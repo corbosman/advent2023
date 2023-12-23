@@ -70,8 +70,12 @@ class day20_pulse_propagation extends solver
                 /* process all the signals and fire off new signals */
                 foreach($destination_module->process($signal) as $new_signal) {
                     if (isset($modules_to_track[$new_signal->source]) && $new_signal->destination === $module->name && $new_signal->pulse === Pulse::HIGH) {
+
+                        /* seen it for the first time? */
                         if ($modules_to_track[$new_signal->source] === 0) {
                             $modules_to_track[$new_signal->source] = $presses;
+
+                            /* seen them all?  We're done! */
                             if (array_product($modules_to_track) !== 0) break 3;
                         }
                     }
